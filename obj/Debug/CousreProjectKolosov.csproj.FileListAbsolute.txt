@@ -1,0 +1,10 @@
+C:\Users\Acer\source\repos\CousreProjectKolosov\bin\Debug\CousreProjectKolosov.exe.config
+C:\Users\Acer\source\repos\CousreProjectKolosov\bin\Debug\CousreProjectKolosov.exe
+C:\Users\Acer\source\repos\CousreProjectKolosov\bin\Debug\CousreProjectKolosov.pdb
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.csprojAssemblyReference.cache
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.Form1.resources
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.Properties.Resources.resources
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.csproj.GenerateResource.cache
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.csproj.CoreCompileInputs.cache
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.exe
+C:\Users\Acer\source\repos\CousreProjectKolosov\obj\Debug\CousreProjectKolosov.pdb
