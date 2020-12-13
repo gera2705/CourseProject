@@ -50,14 +50,5 @@ namespace CousreProjectKolosov
         }
 
        
-
-       
-
-        private void picDisplay_MouseMove(object sender, MouseEventArgs e)
-        {
-            // в обработчике заносим положение мыши в переменные для хранения положения мыши
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
-        }
     }
 }
