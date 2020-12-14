@@ -18,6 +18,7 @@ namespace CousreProjectKolosov
 
         public float Life; // запас здоровья частицы
 
+
         // добавили генератор случайных чисел
         public static Random rand = new Random();
 
@@ -38,7 +39,7 @@ namespace CousreProjectKolosov
         }
         
 
-        public virtual void Draw(Graphics g , int colNum)
+        public virtual void Draw(Graphics g)
         {
             // рассчитываем коэффициент прозрачности по шкале от 0 до 1.0
             float k = Math.Min(1f, Life / 100);
@@ -47,21 +48,13 @@ namespace CousreProjectKolosov
             int alpha = (int)(k * 255);
 
             // создаем цвет из уже существующего, но привязываем к нему еще и значение альфа канала
+            var color = Color.FromArgb(alpha, Color.Black);
+            var b = new SolidBrush(color);
 
+            // остальное все так же
+            g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
 
-            
-                var color = Color.FromArgb(alpha, Color.Black);
-                var b = new SolidBrush(color);
-                g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-                b.Dispose();
-           
-
-            // нарисовали залитый кружок радиусом Radius с центром в X, Y
-            //g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-
-            // удалили кисть из памяти, вообще сборщик мусора рано или поздно это сам сделает
-            // но документация рекомендует делать это самому
-            //b.Dispose();
+            b.Dispose();
         }
 
         
@@ -69,17 +62,10 @@ namespace CousreProjectKolosov
 
     public class ParticleColorful : Particle
     {
-        // два новых поля под цвет начальный и конечный
+     // два новых поля под цвет начальный и конечный
         public Color FromColor;
         public Color ToColor;
 
-
-        public void setColor(Color FromColor , Color ToColor)
-        {
-            this.FromColor = FromColor;
-            this.ToColor = ToColor;
-
-        }
 
         // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)
@@ -93,58 +79,18 @@ namespace CousreProjectKolosov
         }
 
         // ну и отрисовку перепишем
-        public override void Draw(Graphics g , int Colnum)
+        public override void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
-            var color = MixColor(ToColor, FromColor, k); 
-            switch (Colnum)
-            {
-                case 1: 
-                    color = MixColor(Color.Red, Color.Red, k);
-                    break;
-                case 2:
-                    color = MixColor(Color.Orange, Color.Orange, k);
-                    break;
-                case 3:
-                    color = MixColor(Color.Yellow, Color.Yellow, k);
-                    break;
-                case 4:
-                    color = MixColor(Color.Green, Color.Green, k);
-                    break;
-                case 5:
-                    color = MixColor(Color.Aqua, Color.Aqua, k);
-                    break;
-                case 6:
-                    color = MixColor(Color.Blue, Color.Blue, k);
-                    break;
-                case 7:
-                    color = MixColor(Color.DarkMagenta, Color.DarkMagenta, k);
-                    break;
 
-            }
+            // так как k уменьшается от 1 до 0, то порядок цветов обратный
+            var color = MixColor(ToColor, FromColor, k);
             var b = new SolidBrush(color);
+
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
+
             b.Dispose();
-            //так как k уменьшается от 1 до 0, то порядок цветов обратный
-            //if (Colnum == 1)
-            //{
-            //    var color = MixColor(Color.Red, Color.Red, k);
-            //    var b = new SolidBrush(color);
-            //    g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-            //    b.Dispose();
-            //}
-            //else
-            //{
-            //    var color = MixColor(ToColor, FromColor, k);
-            //    var b = new SolidBrush(color);
-
-            //    g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-
-            //    b.Dispose();
-            //}
-
-
-
         }
     }
-}
+    }
+
