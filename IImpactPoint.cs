@@ -7,60 +7,55 @@ using System.Drawing;
 
 namespace CousreProjectKolosov
 {
-    public abstract class IImpactPoint
+    public  class IImpactPoint
     {
         public float X; // ну точка же, вот и две координаты
         public float Y;
+        public int Radius;
+        public int count = 0;
 
-        // абстрактный метод с помощью которого будем изменять состояние частиц
-        // например притягивать
-        public abstract void ImpactParticle(Particle particle);
+        public void ImpactParticle(Particle particle)
+        {
+            float gX = X - particle.X;
+            float gY = Y - particle.Y;
 
-        // базовый класс для отрисовки точечки
+            double r = Math.Sqrt(gX * gX + gY * gY);
+            if (r + particle.Radius < Radius / 2)
+            {
+                count++;
+                particle.Life = 0;
+
+            }
+        }
+
+   
         public void Render(Graphics g)
         {
-            g.FillEllipse(
-                    new SolidBrush(Color.Red),
-                    X - 5,
-                    Y - 5,
-                    10,
-                    10
+            g.DrawEllipse(
+                    new Pen(Color.Red , 3),
+                    X - Radius / 2,
+                    Y - Radius / 2,
+                    Radius,
+                    Radius
+
                 );
+
+            var stringFormat = new StringFormat(); 
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center; 
+
+            g.DrawString(
+             $"{count}", 
+             new Font("Verdana", 10), 
+             new SolidBrush(Color.Blue), 
+             X, 
+             Y,
+             stringFormat
+         );
         }
 
     }
 
 
 
-    public class GravityPoint : IImpactPoint
-    {
-        public int Power = 100; // сила притяжения
-
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
-        public override void ImpactParticle(Particle particle)
-        {
-            float gX = X - particle.X;
-            float gY = Y - particle.Y;
-            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-
-            particle.SpeedX += gX * Power / r2;
-            particle.SpeedY += gY * Power / r2;
-        }
-    }
-
-    public class AntiGravityPoint : IImpactPoint
-    {
-        public int Power = 100; // сила отторжения
-
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
-        public override void ImpactParticle(Particle particle)
-        {
-            float gX = X - particle.X;
-            float gY = Y - particle.Y;
-            float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-
-            particle.SpeedX -= gX * Power / r2; // тут минусики вместо плюсов
-            particle.SpeedY -= gY * Power / r2; // и тут
-        }
-    }
 }
