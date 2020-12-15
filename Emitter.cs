@@ -88,15 +88,25 @@ namespace CousreProjectKolosov
         // функция рендеринга
         public void Render(Graphics g)
         {
-            foreach (var particle in particles)
+
+            foreach (var point in impactPoints)
             {
-                particle.Draw(g);
+                
+                point.Render(g);
+                
             }
 
-            foreach (var point in impactPoints) 
-            {    
-                point.Render(g); 
+            foreach (var particle in particles)
+            {
+                if (particle.Life > 0) 
+                {
+                    particle.Draw(g);
+                }
             }
+
+            
+
+            
         }
 
         public virtual void ResetParticle(Particle particle)

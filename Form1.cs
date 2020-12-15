@@ -67,7 +67,7 @@ namespace CousreProjectKolosov
 
             emitter.UpdateState(); // каждый тик обновляем систему
 
-
+            
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
@@ -138,9 +138,14 @@ namespace CousreProjectKolosov
                         SpeedMax = 20,
                         X = 0,
                         Y = 0,
-                        ColorFrom = Color.Gold,
-                        ColorTo = Color.FromArgb(0, Color.Red),
+                        ColorFrom = colorDialog1.Color,
+                        ColorTo = colorDialog2.Color,
                     };
+                    tbDirection.Enabled = false;
+                    tbSpread.Enabled = true;
+                    tbDirection.Value = 1;
+                    tbSpread.Value = 1;
+                    tbFrequency.Value = 10;
                     break;
 
                 case 1:
@@ -150,20 +155,33 @@ namespace CousreProjectKolosov
                         SpeedMin = 1,
                         SpeedMax = 30,
                         Spreading = 30,
-                        ColorFrom = Color.Gold,
-                        ColorTo = Color.FromArgb(0, Color.Red),
+                        ColorFrom = colorDialog1.Color,
+                        ColorTo = colorDialog2.Color,
                         X = picDisplay.Width / 2,
                         Y = picDisplay.Height,
                     };
+                    tbDirection.Enabled = false;
+                    tbSpread.Enabled = true;
+                    tbDirection.Value = 1;
+                    tbSpread.Value = 1;
+                    tbFrequency.Value = 10;
                     break;
                 case 2:
                     emitter = new TopEmitter
                     {
                         Width = picDisplay.Width,
-                        GravitationY = 0.25f
+                        GravitationY = 0.25f,
+                        ColorFrom = colorDialog1.Color,
+                        ColorTo = colorDialog2.Color,
                     };
+
                     button1.BackColor = emitter.ColorFrom;
                     button2.BackColor = Color.Black;
+                    tbDirection.Enabled = false;
+                    tbSpread.Enabled = false;
+                    tbDirection.Value = 1;
+                    tbSpread.Value = 1;
+                    tbFrequency.Value = 10;
                     break;
                 case 3:
                     this.emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
@@ -172,12 +190,17 @@ namespace CousreProjectKolosov
                         Spreading = 10,
                         SpeedMin = 1,
                         SpeedMax = 30,
-                        ColorFrom = Color.Gold,
-                        ColorTo = Color.FromArgb(0, Color.Red),
+                        ColorFrom = colorDialog1.Color,
+                        ColorTo = colorDialog2.Color,
                         ParticlesPerTick = 10,
                         X = picDisplay.Width / 2,
                         Y = picDisplay.Height / 2,
                     };
+                    tbDirection.Enabled = true;
+                    tbSpread.Enabled = true;
+                    tbDirection.Value = 1;
+                    tbSpread.Value = 1;
+                    tbFrequency.Value = 10;
                     break;
                
                 case 4:
@@ -187,10 +210,15 @@ namespace CousreProjectKolosov
                         SpeedMin = 1,
                         SpeedMax = 20,
                         Spreading = 30,
-                        ColorFrom = Color.Gold,
-                        ColorTo = Color.FromArgb(0, Color.Red),
+                        ColorFrom = colorDialog1.Color,
+                        ColorTo = colorDialog2.Color,
 
                     };
+                    tbDirection.Enabled = true;
+                    tbSpread.Enabled = true;
+                    tbDirection.Value = 1;
+                    tbSpread.Value = 1;
+                    tbFrequency.Value = 10;
                     break;
 
             }
@@ -227,8 +255,9 @@ namespace CousreProjectKolosov
                 {
                     X = e.X,
                     Y = e.Y,
-                    Radius = 50
-                });
+                    Radius = 25
+                }) ;
+               
             }
             if (e.Button == MouseButtons.Right)
             {
@@ -264,7 +293,7 @@ namespace CousreProjectKolosov
 
         private void label15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Выполнил: Колосов Вячеслав Германович \n Группа: ИСТб 19-1 \n Вариант: №6 \n Версия: v1 \n Дата: 15.12.2020");
+            MessageBox.Show("Выполнил: Колосов Вячеслав Германович \n Группа: ИСТб 19-1 \n Вариант: №6 \n Версия: v2 \n Дата: 15.12.2020");
             
         }
     }

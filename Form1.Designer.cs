@@ -141,7 +141,7 @@
             // tbFrequency
             // 
             this.tbFrequency.Location = new System.Drawing.Point(878, 236);
-            this.tbFrequency.Maximum = 30;
+            this.tbFrequency.Maximum = 1000;
             this.tbFrequency.Minimum = 1;
             this.tbFrequency.Name = "tbFrequency";
             this.tbFrequency.Size = new System.Drawing.Size(143, 56);
